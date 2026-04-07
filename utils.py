@@ -9,8 +9,10 @@ P = ParamSpec("P")  # P captures the parameters (arguments) of the function
 R = TypeVar("R")  # R captures the return type of the function
 
 class CallCounter:
+    """Context manager that tracks how many times each decorated function is called."""
+
     current_context: ClassVar[CallCounter | None] = None
-    counts: dict[str, int]  # Store counts as a dictionary: {"MethodName": count}
+    counts: dict[str, int]  # Maps function qualname to call count within this context.
 
     def __init__(self) -> None:
         self.counts = {}

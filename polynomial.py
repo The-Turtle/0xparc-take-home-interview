@@ -50,7 +50,7 @@ class Polynomial:
         def ct_ct_mul(ct1: Ciphertext, ct2: Ciphertext) -> Ciphertext:
             return ct_ct_dot_product([ct1], [ct2])
 
-        def power(ct: Ciphertext, d: int):
+        def power(ct: Ciphertext, d: int) -> Ciphertext:
             if d < 0:
                 raise ValueError(f"cannot raise ciphertext to negative power (d={d})")
             elif d == 0:

@@ -42,6 +42,7 @@ class Ciphertext:
 
 
 def encrypt(value: float) -> Ciphertext:
+    """Module-level convenience alias for `Ciphertext.encrypt`."""
     return Ciphertext.encrypt(value)
 
 
@@ -59,7 +60,7 @@ def sum_cts(addends: Sequence[float | Ciphertext]) -> Ciphertext:
     all_levels = [addend.level for addend in addends if isinstance(addend, Ciphertext)]
     output_level = None if len(all_levels) == 0 else min(all_levels)
 
-    return Ciphertext(result, level = output_level)
+    return Ciphertext(result, level=output_level)
 
 
 def _dot_product(coeffs: Sequence[float | Ciphertext], cts: Sequence[float | Ciphertext]) -> Ciphertext:
@@ -80,11 +81,11 @@ def _dot_product(coeffs: Sequence[float | Ciphertext], cts: Sequence[float | Cip
     all_levels = [ct.level for ct in list(coeffs) + list(cts) if isinstance(ct, Ciphertext)]
     output_level = None if len(all_levels) == 0 else min(all_levels) - 1
 
-    return Ciphertext(result, level = output_level)
+    return Ciphertext(result, level=output_level)
 
 
 @count_calls
-def pt_ct_dot_product(coeffs: list[float], cts: list[float | Ciphertext]) -> Ciphertext:
+def pt_ct_dot_product(coeffs: Sequence[float], cts: Sequence[float | Ciphertext]) -> Ciphertext:
     """
     Dot product of plaintext coefficients with ciphertext (or plaintext) inputs.
     Consumes 1 level.
@@ -93,7 +94,7 @@ def pt_ct_dot_product(coeffs: list[float], cts: list[float | Ciphertext]) -> Cip
 
 
 @count_calls
-def ct_ct_dot_product(coeffs: list[float | Ciphertext], cts: list[float | Ciphertext]) -> Ciphertext:
+def ct_ct_dot_product(coeffs: Sequence[float | Ciphertext], cts: Sequence[float | Ciphertext]) -> Ciphertext:
     """
     Dot product where both coefficients and inputs may be ciphertexts.
     Consumes 1 level.

@@ -10,7 +10,7 @@ In this problem, you will optimize the evaluation of a polynomial over an encryp
 
 ## Getting Started
 
-**Requirements:** Python 3.8+, no external dependencies.
+**Requirements:** Python 3.10+, no external dependencies.
 
 Run the evaluation harness:
 
@@ -33,7 +33,7 @@ The following operations are available in `ciphertext.py`. All ciphertexts begin
 | `pt_ct_dot_product(coeffs, cts)` | Dot product of plaintext floats against ciphertexts | 1 | Costs one level; cheaper in real HE |
 | `ct_ct_dot_product(coeffs, cts)` | Dot product of ciphertexts against ciphertexts | 1 | Costs one level; significantly more expensive in real HE |
 
-**Key insight:** Addition is free (no depth cost). Multiplication — whether `pt_ct_dot_product` or `ct_ct_dot_product` — always costs one level. However, `ct_ct_dot_product` is substantially more expensive in real-world HE systems, so minimizing its use is a secondary priority.
+**Key insight:** Addition is free (no depth cost). Dot products — whether `pt_ct_dot_product` or `ct_ct_dot_product` — always cost one level. However, `ct_ct_dot_product` is substantially more expensive in real-world HE systems, so minimizing its use is a secondary priority.
 
 ---
 
@@ -71,3 +71,10 @@ Running `python main.py` calls `cost(degree)` for each polynomial degree from 0 
 - **pt_ct_dot_product count** — number of plaintext-ciphertext dot products performed
 
 Submissions will be evaluated against the naive baseline on these three metrics, in the strict priority order described above. A correct submission must produce the same numerical result as `evaluate_pt` for all test inputs and all degrees.
+
+---
+
+## Rules
+
+- You may use AI tools and the Internet freely.
+- This must be completed **individually** — do not ask other people for help or collaborate with others.
